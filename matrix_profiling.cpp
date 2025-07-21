@@ -209,54 +209,54 @@ int main() {
     
     // Test with smaller matrices
     std::cout << "\n--- Small Matrix Test (10,000 x 500) ---" << std::endl;
-    Matrix matrix1_row(10000, 500);
-    Matrix matrix1_col(500, 10000);
+    Matrix mat1_row(10000, 500);
+    Matrix mat1_col(500, 10000);
     
-    matrix1_row.generateRandom();
-    matrix1_col.generateRandom();
+    mat1_row.generateRandom();
+    mat1_col.generateRandom();
     
     std::cout << "Matrix shapes:" << std::endl;
-    std::cout << "- matrix1_row: " << matrix1_row.getRows() << " x " << matrix1_row.getCols() << std::endl;
-    std::cout << "- matrix1_col: " << matrix1_col.getRows() << " x " << matrix1_col.getCols() << std::endl;
+    std::cout << "- mat1_row: " << mat1_row.getRows() << " x " << mat1_row.getCols() << std::endl;
+    std::cout << "- mat1_col: " << mat1_col.getRows() << " x " << mat1_col.getCols() << std::endl;
     
     std::cout << "\n=== Multiple Operations Profiling ===" << std::endl;
     
-    profileOperation("matrix1_row std", [&]() { matrix1_row.rowStd(); });
-    profileOperation("matrix1_col std", [&]() { matrix1_col.colStd(); });
-    profileOperation("matrix1_row mean", [&]() { matrix1_row.rowMean(); });
-    profileOperation("matrix1_col mean", [&]() { matrix1_col.colMean(); });
-    profileOperation("matrix1_row sum", [&]() { matrix1_row.rowSum(); });
-    profileOperation("matrix1_col sum", [&]() { matrix1_col.colSum(); });
-    profileOperation("matrix1_row transpose", [&]() { matrix1_row.transpose(); });
-    profileOperation("matrix1_col transpose", [&]() { matrix1_col.transpose(); });
-    profileOperation("matrix1_row reshape", [&]() { matrix1_row.reshape(50000, 100); });
-    profileOperation("matrix1_col reshape", [&]() { matrix1_col.reshape(50000, 100); });
+    profileOperation("mat1_row std", [&]() { mat1_row.rowStd(); });
+    profileOperation("mat1_col std", [&]() { mat1_col.colStd(); });
+    profileOperation("mat1_row mean", [&]() { mat1_row.rowMean(); });
+    profileOperation("mat1_col mean", [&]() { mat1_col.colMean(); });
+    profileOperation("mat1_row sum", [&]() { mat1_row.rowSum(); });
+    profileOperation("mat1_col sum", [&]() { mat1_col.colSum(); });
+    profileOperation("mat1_row transpose", [&]() { mat1_row.transpose(); });
+    profileOperation("mat1_col transpose", [&]() { mat1_col.transpose(); });
+    profileOperation("mat1_row reshape", [&]() { mat1_row.reshape(50000, 100); }); // 50000 = 10000 * 5
+    profileOperation("mat1_col reshape", [&]() { mat1_col.reshape(50000, 100); }); // 50000 = 500 * 100
     
     // Test with larger matrices
     std::cout << "\n" << std::string(60, '=') << std::endl;
     std::cout << "\n--- Large Matrix Test (100,000 x 500) ---" << std::endl;
-    Matrix matrix2_row(100000, 500);
-    Matrix matrix2_col(500, 100000);
+    Matrix mat2_row(100000, 500);
+    Matrix mat2_col(500, 100000);
     
-    matrix2_row.generateRandom();
-    matrix2_col.generateRandom();
+    mat2_row.generateRandom();
+    mat2_col.generateRandom();
     
     std::cout << "Matrix shapes:" << std::endl;
-    std::cout << "- matrix2_row: " << matrix2_row.getRows() << " x " << matrix2_row.getCols() << std::endl;
-    std::cout << "- matrix2_col: " << matrix2_col.getRows() << " x " << matrix2_col.getCols() << std::endl;
+    std::cout << "- mat2_row: " << mat2_row.getRows() << " x " << mat2_row.getCols() << std::endl;
+    std::cout << "- mat2_col: " << mat2_col.getRows() << " x " << mat2_col.getCols() << std::endl;
     
     std::cout << "\n=== Multiple Operations Profiling ===" << std::endl;
     
-    profileOperation("matrix2_row std", [&]() { matrix2_row.rowStd(); });
-    profileOperation("matrix2_col std", [&]() { matrix2_col.colStd(); });
-    profileOperation("matrix2_row mean", [&]() { matrix2_row.rowMean(); });
-    profileOperation("matrix2_col mean", [&]() { matrix2_col.colMean(); });
-    profileOperation("matrix2_row sum", [&]() { matrix2_row.rowSum(); });
-    profileOperation("matrix2_col sum", [&]() { matrix2_col.colSum(); });
-    profileOperation("matrix2_row transpose", [&]() { matrix2_row.transpose(); });
-    profileOperation("matrix2_col transpose", [&]() { matrix2_col.transpose(); });
-    profileOperation("matrix2_row reshape", [&]() { matrix2_row.reshape(500000, 100); });
-    profileOperation("matrix2_col reshape", [&]() { matrix2_col.reshape(500000, 100); });
+    profileOperation("mat2_row std", [&]() { mat2_row.rowStd(); });
+    profileOperation("mat2_col std", [&]() { mat2_col.colStd(); });
+    profileOperation("mat2_row mean", [&]() { mat2_row.rowMean(); });
+    profileOperation("mat2_col mean", [&]() { mat2_col.colMean(); });
+    profileOperation("mat2_row sum", [&]() { mat2_row.rowSum(); });
+    profileOperation("mat2_col sum", [&]() { mat2_col.colSum(); });
+    profileOperation("mat2_row transpose", [&]() { mat2_row.transpose(); });
+    profileOperation("mat2_col transpose", [&]() { mat2_col.transpose(); });
+    profileOperation("mat2_row reshape", [&]() { mat2_row.reshape(500000, 100); }); // 500000 = 100000 * 5
+    profileOperation("mat2_col reshape", [&]() { mat2_col.reshape(500000, 100); }); // 500000 = 500 * 100
     
     return 0;
 }
