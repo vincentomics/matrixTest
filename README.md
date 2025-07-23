@@ -1,6 +1,57 @@
 Performance benchmarks comparing matrix operations using row-major vs column-major orientation. Tests evaluate common operations (mean, standard deviation, sum, transpose, reshape) on small and large matrices in different programming languages.
 
 
+# C++
+## Build and Run
+```bash
+# Compile
+make
+# Run profiling
+make run
+```
+
+## Results
+### Small Matrix
+```
+Matrix shapes:
+- mat1_row: 10000 x 500
+- mat1_col: 500 x 10000
+
+=== Multiple Operations Profiling ===
+mat1_row std   : 0.005302 ± 0.000065 seconds (mean ± std over 1000 runs)
+mat1_col std   : 0.007257 ± 0.000603 seconds (mean ± std over 1000 runs)
+mat1_row mean  : 0.005080 ± 0.000100 seconds (mean ± std over 1000 runs)
+mat1_col mean  : 0.006765 ± 0.000526 seconds (mean ± std over 1000 runs)
+mat1_row sum   : 0.000793 ± 0.000052 seconds (mean ± std over 1000 runs)
+mat1_col sum   : 0.012943 ± 0.001479 seconds (mean ± std over 1000 runs)
+mat1_row transpose: 0.022760 ± 0.001684 seconds (mean ± std over 1000 runs)
+mat1_col transpose: 0.032140 ± 0.001369 seconds (mean ± std over 1000 runs)
+mat1_row reshape: 0.042536 ± 0.001544 seconds (mean ± std over 1000 runs)
+mat1_col reshape: 0.042440 ± 0.000905 seconds (mean ± std over 1000 runs)
+```
+
+### Large Matrix
+```
+Matrix shapes:
+- mat2_row: 100000 x 500
+- mat2_col: 500 x 100000
+
+=== Multiple Operations Profiling ===
+mat2_row std   : 0.055088 ± 0.001228 seconds (mean ± std over 1000 runs)
+mat2_col std   : 0.107474 ± 0.013479 seconds (mean ± std over 1000 runs)
+mat2_row mean  : 0.054145 ± 0.005881 seconds (mean ± std over 1000 runs)
+mat2_col mean  : 0.091631 ± 0.007014 seconds (mean ± std over 1000 runs)
+mat2_row sum   : 0.023738 ± 0.002975 seconds (mean ± std over 1000 runs)
+mat2_col sum   : 0.140037 ± 0.005347 seconds (mean ± std over 1000 runs)
+mat2_row transpose: 0.274522 ± 0.010989 seconds (mean ± std over 1000 runs)
+mat2_col transpose: 0.498102 ± 0.017182 seconds (mean ± std over 1000 runs)
+mat2_row reshape: 0.450668 ± 0.003951 seconds (mean ± std over 1000 runs)
+mat2_col reshape: 0.476853 ± 0.004305 seconds (mean ± std over 1000 runs)
+```
+
+
+
+
 # Python
 ## NumPy (`matrix_profiling_np.ipynb`)
 ### Small Matrix (10,000 × 500)
@@ -82,55 +133,24 @@ df2_col reshape: 0.000014 ± 0.000002 seconds (mean ± std over 1000 runs)
 ```
 
 
-# C++
-## Build and Run
-```bash
-# Compile
-make
-# Run profiling
-make run
-```
 
-## Results
 
+# R
+## Matrix
 ### Small Matrix
 ```
-Matrix shapes:
-- mat1_row: 10000 x 500
-- mat1_col: 500 x 10000
-
-=== Multiple Operations Profiling ===
-mat1_row std   : 0.005302 ± 0.000065 seconds (mean ± std over 1000 runs)
-mat1_col std   : 0.007257 ± 0.000603 seconds (mean ± std over 1000 runs)
-mat1_row mean  : 0.005080 ± 0.000100 seconds (mean ± std over 1000 runs)
-mat1_col mean  : 0.006765 ± 0.000526 seconds (mean ± std over 1000 runs)
-mat1_row sum   : 0.000793 ± 0.000052 seconds (mean ± std over 1000 runs)
-mat1_col sum   : 0.012943 ± 0.001479 seconds (mean ± std over 1000 runs)
-mat1_row transpose: 0.022760 ± 0.001684 seconds (mean ± std over 1000 runs)
-mat1_col transpose: 0.032140 ± 0.001369 seconds (mean ± std over 1000 runs)
-mat1_row reshape: 0.042536 ± 0.001544 seconds (mean ± std over 1000 runs)
-mat1_col reshape: 0.042440 ± 0.000905 seconds (mean ± std over 1000 runs)
 ```
 
 ### Large Matrix
 ```
-Matrix shapes:
-- mat2_row: 100000 x 500
-- mat2_col: 500 x 100000
-
-=== Multiple Operations Profiling ===
-mat2_row std   : 0.055088 ± 0.001228 seconds (mean ± std over 1000 runs)
-mat2_col std   : 0.107474 ± 0.013479 seconds (mean ± std over 1000 runs)
-mat2_row mean  : 0.054145 ± 0.005881 seconds (mean ± std over 1000 runs)
-mat2_col mean  : 0.091631 ± 0.007014 seconds (mean ± std over 1000 runs)
-mat2_row sum   : 0.023738 ± 0.002975 seconds (mean ± std over 1000 runs)
-mat2_col sum   : 0.140037 ± 0.005347 seconds (mean ± std over 1000 runs)
-mat2_row transpose: 0.274522 ± 0.010989 seconds (mean ± std over 1000 runs)
-mat2_col transpose: 0.498102 ± 0.017182 seconds (mean ± std over 1000 runs)
-mat2_row reshape: 0.450668 ± 0.003951 seconds (mean ± std over 1000 runs)
-mat2_col reshape: 0.476853 ± 0.004305 seconds (mean ± std over 1000 runs)
 ```
 
 
-# R
-> TODO
+## DataFrame
+### Small Matrix
+```
+```
+
+### Large Matrix
+```
+```
