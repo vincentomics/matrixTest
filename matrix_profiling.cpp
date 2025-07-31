@@ -6,6 +6,8 @@
 #include <iomanip>
 #include <cmath>
 #include <string>
+#include <fstream>
+
 
 class Matrix {
 private:
@@ -143,6 +145,34 @@ public:
         }
         return result;
     }
+
+    void writeToFile(const std::string& filename) const {
+        std::ofstream file(filename);
+        if (!file.is_open()) throw std::runtime_error("Unable to open file for writing");
+
+        for (size_t i = 0; i < rows; ++i) {
+            for (size_t j = 0; j < cols; ++j) {
+                file << data[i][j];
+                if (j < cols - 1) file << "\t";
+            }
+            file << "\n";
+        }
+        file.close();
+    }
+
+    static Matrix readFromFile(const std::string& filename, size_t rows, size_t cols) {
+        std::ifstream file(filename);
+        if (!file.is_open()) throw std::runtime_error("Unable to open file for reading");
+
+        Matrix result(rows, cols);
+        for (size_t i = 0; i < rows; ++i) {
+            for (size_t j = 0; j < cols; ++j) {
+                file >> result(i, j);
+            }
+        }
+        file.close();
+        return result;
+    }
 };
 
 // Timing utilities
@@ -206,57 +236,47 @@ Statistics profileOperation(const std::string& name, Func operation, int num_run
 
 int main() {
     std::cout << "=== C++ Matrix Operations Profiling ===" << std::endl;
-    
-    // Test with smaller matrices
-    std::cout << "\n--- Small Matrix Test (10,000 x 500) ---" << std::endl;
-    Matrix mat1_row(10000, 500);
-    Matrix mat1_col(500, 10000);
-    
-    mat1_row.generateRandom();
-    mat1_col.generateRandom();
-    
-    std::cout << "Matrix shapes:" << std::endl;
-    std::cout << "- mat1_row: " << mat1_row.getRows() << " x " << mat1_row.getCols() << std::endl;
-    std::cout << "- mat1_col: " << mat1_col.getRows() << " x " << mat1_col.getCols() << std::endl;
-    
-    std::cout << "\n=== Multiple Operations Profiling ===" << std::endl;
-    
-    profileOperation("mat1_row std", [&]() { mat1_row.rowStd(); });
-    profileOperation("mat1_col std", [&]() { mat1_col.colStd(); });
-    profileOperation("mat1_row mean", [&]() { mat1_row.rowMean(); });
-    profileOperation("mat1_col mean", [&]() { mat1_col.colMean(); });
-    profileOperation("mat1_row sum", [&]() { mat1_row.rowSum(); });
-    profileOperation("mat1_col sum", [&]() { mat1_col.colSum(); });
-    profileOperation("mat1_row transpose", [&]() { mat1_row.transpose(); });
-    profileOperation("mat1_col transpose", [&]() { mat1_col.transpose(); });
-    profileOperation("mat1_row reshape", [&]() { mat1_row.reshape(50000, 100); }); // 50000 = 10000 * 5
-    profileOperation("mat1_col reshape", [&]() { mat1_col.reshape(50000, 100); }); // 50000 = 500 * 100
-    
-    // Test with larger matrices
-    std::cout << "\n" << std::string(60, '=') << std::endl;
-    std::cout << "\n--- Large Matrix Test (100,000 x 500) ---" << std::endl;
-    Matrix mat2_row(100000, 500);
-    Matrix mat2_col(500, 100000);
-    
-    mat2_row.generateRandom();
-    mat2_col.generateRandom();
-    
-    std::cout << "Matrix shapes:" << std::endl;
-    std::cout << "- mat2_row: " << mat2_row.getRows() << " x " << mat2_row.getCols() << std::endl;
-    std::cout << "- mat2_col: " << mat2_col.getRows() << " x " << mat2_col.getCols() << std::endl;
-    
-    std::cout << "\n=== Multiple Operations Profiling ===" << std::endl;
-    
-    profileOperation("mat2_row std", [&]() { mat2_row.rowStd(); });
-    profileOperation("mat2_col std", [&]() { mat2_col.colStd(); });
-    profileOperation("mat2_row mean", [&]() { mat2_row.rowMean(); });
-    profileOperation("mat2_col mean", [&]() { mat2_col.colMean(); });
-    profileOperation("mat2_row sum", [&]() { mat2_row.rowSum(); });
-    profileOperation("mat2_col sum", [&]() { mat2_col.colSum(); });
-    profileOperation("mat2_row transpose", [&]() { mat2_row.transpose(); });
-    profileOperation("mat2_col transpose", [&]() { mat2_col.transpose(); });
-    profileOperation("mat2_row reshape", [&]() { mat2_row.reshape(500000, 100); }); // 500000 = 100000 * 5
-    profileOperation("mat2_col reshape", [&]() { mat2_col.reshape(500000, 100); }); // 500000 = 500 * 100
-    
+
+    std::vector<std::pair<std::string, std::pair<size_t, size_t>>> sizes = {
+        {"Small",  {10'000, 100}},
+        {"Medium", {100'000, 500}},
+        {"Large",  {1'000'000, 500}}
+    };
+
+    for (const auto& [label, dims] : sizes) {
+        size_t nrow = dims.first;
+        size_t ncol = dims.second;
+
+        std::cout << "\n--- " << label << " Matrix Test (" << nrow << " x " << ncol << ") ---" << std::endl;
+
+        Matrix mat_row(nrow, ncol);
+        Matrix mat_col(ncol, nrow);
+        mat_row.generateRandom();
+        mat_col.generateRandom();
+
+        std::cout << "Matrix shapes:\n";
+        std::cout << "- mat_row: " << mat_row.getRows() << " x " << mat_row.getCols() << std::endl;
+        std::cout << "- mat_col: " << mat_col.getRows() << " x " << mat_col.getCols() << std::endl;
+
+        std::cout << "\n=== Multiple Operations Profiling ===" << std::endl;
+
+        profileOperation("row sum", [&]() { mat_row.rowSum(); });
+        profileOperation("col sum", [&]() { mat_col.colSum(); });
+        profileOperation("row mean", [&]() { mat_row.rowMean(); });
+        profileOperation("col mean", [&]() { mat_col.colMean(); });
+        profileOperation("row std", [&]() { mat_row.rowStd(); });
+        profileOperation("col std", [&]() { mat_col.colStd(); });
+        profileOperation("row reshape", [&]() { mat_row.reshape(nrow, 50); });
+        profileOperation("col reshape", [&]() { mat_col.reshape(ncol, 50); });
+        profileOperation("row transpose", [&]() { mat_row.transpose(); });
+        profileOperation("col transpose", [&]() { mat_col.transpose(); });
+        profileOperation("row write to file", [&]() { mat_row.writeToFile("temp_" + label + "_row.txt"); });
+        profileOperation("col write to file", [&]() { mat_col.writeToFile("temp_" + label + "_col.txt"); });
+        profileOperation("row read from file", [&]() { Matrix::readFromFile("temp_" + label + "_row.txt", nrow, ncol); });
+        profileOperation("col read from file", [&]() { Matrix::readFromFile("temp_" + label + "_col.txt", ncol, nrow); });
+
+        std::cout << std::string(60, '-') << std::endl;
+    }
+
     return 0;
 }
