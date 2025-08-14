@@ -4,3 +4,18 @@ row-major sum                 : 0.000048 ± 0.000034 seconds (mean ± sd over 10
 col-major sum                 : 0.000014 ± 0.000017 seconds (mean ± sd over 100000 runs)
 row-major mean                : 0.000048 ± 0.000021 seconds (mean ± sd over 100000 runs)
 col-major mean                : 0.000014 ± 0.000016 seconds (mean ± sd over 100000 runs)
+row-major std                 : 0.000976 ± 0.000517 seconds (mean ± sd over 100000 runs)
+col-major std                 : 0.000974 ± 0.000509 seconds (mean ± sd over 100000 runs)
+row-major transpose           : 0.000031 ± 0.000121 seconds (mean ± sd over 100000 runs)
+col-major transpose           : 0.000030 ± 0.000080 seconds (mean ± sd over 100000 runs)
+row-major reshape             : 0.000019 ± 0.000115 seconds (mean ± sd over 100000 runs)
+col-major reshape             : 0.000018 ± 0.000080 seconds (mean ± sd over 100000 runs)
+row-major write to txt        : 0.004022 ± 0.000147 seconds (mean ± sd over 10000 runs)
+col-major write to txt        : 0.004014 ± 0.000121 seconds (mean ± sd over 10000 runs)
+row-major read from txt       : 0.004013 ± 0.000790 seconds (mean ± sd over 10000 runs)
+col-major read from txt       : 0.004024 ± 0.000770 seconds (mean ± sd over 10000 runs)
+
+
+
+--- Matrix Small Test (1000 x 1000) ---
+=== Multiple Operations Profiling ===

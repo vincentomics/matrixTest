@@ -9,6 +9,7 @@
 #include <fstream>
 #include <cstdio> // for std::remove
 #include <map>
+#include <tuple>
 
 class Matrix {
 private:
@@ -239,20 +240,20 @@ void profile_operations(const Matrix& mat_row, const Matrix& mat_col, const std:
 }
 
 int main() {
-    time_start = std::chrono::high_resolution_clock::now();
+    auto time_start = std::chrono::high_resolution_clock::now();
     std::cout << "=== C++ Matrix Operations Profiling ===\n\n";
 
-    std::map<std::string, std::pair<size_t, size_t>> sizes = {
+    std::map<std::string, std::tuple<size_t, size_t, size_t>> sizes = {
         {"Tiny",  {100, 100, 100000}},
-        {"Small",  {1_000, 1_000, 10000}},
-        {"Medium", {10_000, 1_000, 1000}},
-        {"Large",  {100_000, 1_000, 100}},
+        {"Small",  {1000, 1000, 10000}},
+        {"Medium", {10000, 1000, 1000}},
+        {"Large",  {100000, 1000, 100}},
     };
 
     for (const auto& [label, dims] : sizes) {
-        size_t nrow = dims.first;
-        size_t ncol = dims.second;
-        size_t n_iter = dims.third;
+        size_t nrow = std::get<0>(dims);
+        size_t ncol = std::get<1>(dims);
+        size_t n_iter = std::get<2>(dims);
 
         Matrix mat_row(nrow, ncol);
         Matrix mat_col(ncol, nrow);
@@ -265,7 +266,7 @@ int main() {
         std::cout << "\n\n";
     }
 
-    time_end = std::chrono::high_resolution_clock::now();
+    auto time_end = std::chrono::high_resolution_clock::now();
     std::cout << "\n=== Test time taken: " << std::chrono::duration_cast<std::chrono::seconds>(time_end - time_start).count() << " seconds ===\n";
 
     return 0;
