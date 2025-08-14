@@ -6,7 +6,6 @@ generate_count_mat <- function(rows, cols, min_val = 0, max_val = 100, seed = 42
   matrix(sample(min_val:max_val, rows * cols, replace = TRUE), nrow = rows, ncol = cols)
 }
 
-
 # File I/O for dataframe
 write_df_to_txt <- function(df, filename) {
   write.table(df, file = filename, sep = "\t", row.names = FALSE, col.names = FALSE)
@@ -16,7 +15,7 @@ read_df_from_txt <- function(filename) {
 }
 
 # DataFrame benchmarking
-profile_dataframe_operations <- function(df_row, df_col, label = "DataFrame", n_iter = 100, filename_prefix = "temp_df") {
+profile_dataframe_operations <- function(df_row, df_col, label = "DataFrame", n_iter = 1000, filename_prefix = "temp_df") {
   cat(sprintf("--- %s Test (%d x %d) ---\n", label, nrow(df_row), ncol(df_row)))
 
   operations <- list(
@@ -38,7 +37,8 @@ profile_dataframe_operations <- function(df_row, df_col, label = "DataFrame", n_
 
   cat("=== Multiple Operations Profiling ===\n")
   for (op_name in names(operations)) {
-    times <- microbenchmark(operations[[op_name]](), times = if (grepl("read|write", op_name)) 10 else n_iter)
+    n_runs <- ifelse(!grepl("read|write", op_name), n_iter, as.integer(n_iter/10))
+    times <- microbenchmark(operations[[op_name]](), times = n_runs)
     mean_time <- mean(times$time) / 1e9
     sd_time <- sd(times$time) / 1e9
     cat(sprintf("%-30s: %.6f ± %.6f seconds (mean ± sd over %d runs)\n",
@@ -52,23 +52,29 @@ profile_dataframe_operations <- function(df_row, df_col, label = "DataFrame", n_
 
 run_all_benchmarks <- function() {
   sizes <- list(
-    "Small" = c(10000, 100),
-    "Medium" = c(100000, 500),
-    "Large" = c(1000000, 500)
+    "Tiny" = c(100, 100, 100000),
+    "Small" = c(1000, 1000, 10000),
+    "Medium" = c(10000, 1000, 1000),
+    "Large" = c(100000, 1000, 100)
   )
 
   for (label in names(sizes)) {
     dims <- sizes[[label]]
     rows <- dims[1]
     cols <- dims[2]
+    n_iter <- dims[3]
 
     # DataFrame
     df_row <- as.data.frame(generate_count_mat(rows, cols))
     df_col <- as.data.frame(generate_count_mat(cols, rows))
-    profile_dataframe_operations(df_row, df_col, label = paste("DataFrame", label), filename_prefix = paste0("temp_", tolower(label), "_df"))
-
+    profile_dataframe_operations(df_row, df_col, label = paste("DataFrame", label), filename_prefix = paste0("temp_", tolower(label), "_df"), n_iter = n_iter)
+    cat("\n\n")
+    
   }
 }
 
 # Run everything
+time_start = Sys.time()
 run_all_benchmarks()
+time_end = Sys.time()
+cat(paste0("\n=== Test time taken:", time_end - time_start, "seconds ===\n"))

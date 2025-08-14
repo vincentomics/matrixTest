@@ -14,9 +14,8 @@ read_matrix_from_txt <- function(filename) {
   as.matrix(read.table(file = filename, sep = "\t", header = FALSE))
 }
 
-
 # Matrix benchmarking
-profile_matrix_operations <- function(mat_row, mat_col, label = "Matrix", n_iter = 100, filename_prefix = "temp_matrix") {
+profile_matrix_operations <- function(mat_row, mat_col, label = "Matrix", n_iter = 1000, filename_prefix = "temp_matrix") {
   cat(sprintf("--- %s Test (%d x %d) ---\n", label, nrow(mat_row), ncol(mat_row)))
 
   operations <- list(
@@ -38,7 +37,8 @@ profile_matrix_operations <- function(mat_row, mat_col, label = "Matrix", n_iter
 
   cat("=== Multiple Operations Profiling ===\n")
   for (op_name in names(operations)) {
-    times <- microbenchmark(operations[[op_name]](), times = if (grepl("read|write", op_name)) 10 else n_iter)
+    n_runs <- ifelse(!grepl("read|write", op_name), n_iter, as.integer(n_iter/10))
+    times <- microbenchmark(operations[[op_name]](), times = n_runs)
     mean_time <- mean(times$time) / 1e9
     sd_time <- sd(times$time) / 1e9
     cat(sprintf("%-30s: %.6f ± %.6f seconds (mean ± sd over %d runs)\n",
@@ -52,23 +52,29 @@ profile_matrix_operations <- function(mat_row, mat_col, label = "Matrix", n_iter
 
 run_all_benchmarks <- function() {
   sizes <- list(
-    "Small" = c(10000, 100),
-    "Medium" = c(100000, 500),
-    "Large" = c(1000000, 500)
+    "Tiny" = c(100, 100, 100000),
+    "Small" = c(1000, 1000, 10000),
+    "Medium" = c(10000, 1000, 1000),
+    "Large" = c(100000, 1000, 100)
   )
 
   for (label in names(sizes)) {
     dims <- sizes[[label]]
     rows <- dims[1]
     cols <- dims[2]
+    n_iter <- dims[3]
 
     # Matrix
     mat_row <- generate_count_mat(rows, cols)
     mat_col <- generate_count_mat(cols, rows)
-    profile_matrix_operations(mat_row, mat_col, label = paste("Matrix", label), filename_prefix = paste0("temp_", tolower(label), "_matrix"))
+    profile_matrix_operations(mat_row, mat_col, label = paste("Matrix", label), filename_prefix = paste0("temp_", tolower(label), "_matrix"), n_iter = n_iter)
+    cat("\n\n")
 
   }
 }
 
 # Run everything
+time_start = Sys.time()
 run_all_benchmarks()
+time_end = Sys.time()
+cat(paste0("\n=== Test time taken:", time_end - time_start, "seconds ===\n"))

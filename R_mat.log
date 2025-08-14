@@ -1,0 +1,6 @@
+--- Matrix Tiny Test (100 x 100) ---
+=== Multiple Operations Profiling ===
+row-major sum                 : 0.000048 ± 0.000034 seconds (mean ± sd over 100000 runs)
+col-major sum                 : 0.000014 ± 0.000017 seconds (mean ± sd over 100000 runs)
+row-major mean                : 0.000048 ± 0.000021 seconds (mean ± sd over 100000 runs)
+col-major mean                : 0.000014 ± 0.000016 seconds (mean ± sd over 100000 runs)
