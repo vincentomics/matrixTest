@@ -1,0 +1,95 @@
+--- Tiny Test (100 x 100) ---
+DataFrame shapes:
+- row-oriented: (100, 100)
+- col-oriented: (100, 100)
+
+=== Multiple Operations Profiling ===
+row-oriented sum                   : 0.000252 ± 0.000015 seconds (mean ± std over 100000 runs)
+col-oriented sum                   : 0.000123 ± 0.000007 seconds (mean ± std over 100000 runs)
+row-oriented mean                  : 0.000283 ± 0.000012 seconds (mean ± std over 100000 runs)
+col-oriented mean                  : 0.000172 ± 0.000033 seconds (mean ± std over 100000 runs)
+row-oriented std                   : 0.000334 ± 0.000011 seconds (mean ± std over 100000 runs)
+col-oriented std                   : 0.000201 ± 0.000009 seconds (mean ± std over 100000 runs)
+row-oriented transpose             : 0.000062 ± 0.000003 seconds (mean ± std over 100000 runs)
+col-oriented transpose             : 0.000061 ± 0.000002 seconds (mean ± std over 100000 runs)
+row-oriented reshape (flat -> 50)  : 0.000015 ± 0.000001 seconds (mean ± std over 100000 runs)
+col-oriented reshape (flat -> 50)  : 0.000015 ± 0.000001 seconds (mean ± std over 100000 runs)
+row-oriented write to txt          : 0.002073 ± 0.000068 seconds (mean ± std over 10000 runs)
+col-oriented write to txt          : 0.002099 ± 0.000195 seconds (mean ± std over 10000 runs)
+row-oriented read from txt         : 0.002207 ± 0.000043 seconds (mean ± std over 10000 runs)
+col-oriented read from txt         : 0.002207 ± 0.000049 seconds (mean ± std over 10000 runs)
+
+
+
+--- Small Test (1000 x 1000) ---
+DataFrame shapes:
+- row-oriented: (1000, 1000)
+- col-oriented: (1000, 1000)
+
+=== Multiple Operations Profiling ===
+row-oriented sum                   : 0.000799 ± 0.000017 seconds (mean ± std over 10000 runs)
+col-oriented sum                   : 0.000620 ± 0.000018 seconds (mean ± std over 10000 runs)
+row-oriented mean                  : 0.001426 ± 0.000033 seconds (mean ± std over 10000 runs)
+col-oriented mean                  : 0.001204 ± 0.000034 seconds (mean ± std over 10000 runs)
+row-oriented std                   : 0.009450 ± 0.000188 seconds (mean ± std over 10000 runs)
+col-oriented std                   : 0.009170 ± 0.000154 seconds (mean ± std over 10000 runs)
+row-oriented transpose             : 0.000125 ± 0.000005 seconds (mean ± std over 10000 runs)
+col-oriented transpose             : 0.000126 ± 0.000005 seconds (mean ± std over 10000 runs)
+row-oriented reshape (flat -> 50)  : 0.000016 ± 0.000001 seconds (mean ± std over 10000 runs)
+col-oriented reshape (flat -> 50)  : 0.000015 ± 0.000001 seconds (mean ± std over 10000 runs)
+row-oriented write to txt          : 0.178950 ± 0.104713 seconds (mean ± std over 1000 runs)
+col-oriented write to txt          : 0.174185 ± 0.001469 seconds (mean ± std over 1000 runs)
+row-oriented read from txt         : 0.071297 ± 0.001547 seconds (mean ± std over 1000 runs)
+col-oriented read from txt         : 0.071125 ± 0.001435 seconds (mean ± std over 1000 runs)
+
+
+
+--- Medium Test (10000 x 1000) ---
+DataFrame shapes:
+- row-oriented: (10000, 1000)
+- col-oriented: (1000, 10000)
+
+=== Multiple Operations Profiling ===
+row-oriented sum                   : 0.007721 ± 0.000183 seconds (mean ± std over 1000 runs)
+col-oriented sum                   : 0.007983 ± 0.000147 seconds (mean ± std over 1000 runs)
+row-oriented mean                  : 0.012579 ± 0.000246 seconds (mean ± std over 1000 runs)
+col-oriented mean                  : 0.012205 ± 0.000165 seconds (mean ± std over 1000 runs)
+row-oriented std                   : 0.105192 ± 0.000555 seconds (mean ± std over 1000 runs)
+col-oriented std                   : 0.102106 ± 0.000561 seconds (mean ± std over 1000 runs)
+row-oriented transpose             : 0.000131 ± 0.000012 seconds (mean ± std over 1000 runs)
+col-oriented transpose             : 0.000751 ± 0.000020 seconds (mean ± std over 1000 runs)
+row-oriented reshape (flat -> 50)  : 0.000015 ± 0.000002 seconds (mean ± std over 1000 runs)
+col-oriented reshape (flat -> 50)  : 0.000015 ± 0.000001 seconds (mean ± std over 1000 runs)
+row-oriented write to txt          : 1.755146 ± 0.010662 seconds (mean ± std over 100 runs)
+col-oriented write to txt          : 2.711744 ± 0.031346 seconds (mean ± std over 100 runs)
+row-oriented read from txt         : 0.531606 ± 0.017559 seconds (mean ± std over 100 runs)
+col-oriented read from txt         : 1.357297 ± 0.013143 seconds (mean ± std over 100 runs)
+
+
+
+--- Large Test (100000 x 1000) ---
+DataFrame shapes:
+- row-oriented: (100000, 1000)
+- col-oriented: (1000, 100000)
+
+=== Multiple Operations Profiling ===
+row-oriented sum                   : 0.080811 ± 0.000549 seconds (mean ± std over 100 runs)
+col-oriented sum                   : 0.102073 ± 0.000739 seconds (mean ± std over 100 runs)
+row-oriented mean                  : 0.125652 ± 0.001711 seconds (mean ± std over 100 runs)
+col-oriented mean                  : 0.136060 ± 0.001618 seconds (mean ± std over 100 runs)
+row-oriented std                   : 1.089399 ± 0.003812 seconds (mean ± std over 100 runs)
+col-oriented std                   : 1.112716 ± 0.003004 seconds (mean ± std over 100 runs)
+row-oriented transpose             : 0.000143 ± 0.000035 seconds (mean ± std over 100 runs)
+col-oriented transpose             : 0.007069 ± 0.000182 seconds (mean ± std over 100 runs)
+row-oriented reshape (flat -> 50)  : 0.000018 ± 0.000007 seconds (mean ± std over 100 runs)
+col-oriented reshape (flat -> 50)  : 0.000016 ± 0.000001 seconds (mean ± std over 100 runs)
+row-oriented write to txt          : 17.510481 ± 0.078533 seconds (mean ± std over 10 runs)
+col-oriented write to txt          : 137.349850 ± 0.170354 seconds (mean ± std over 10 runs)
+row-oriented read from txt         : 5.015773 ± 0.122119 seconds (mean ± std over 10 runs)
+col-oriented read from txt         : 73.022526 ± 0.160319 seconds (mean ± std over 10 runs)
+
+
+
+
+=== Test time taken: 4443.25 seconds ===
+

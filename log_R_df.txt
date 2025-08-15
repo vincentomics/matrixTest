@@ -1,0 +1,78 @@
+--- DataFrame Tiny Test (100 x 100) ---
+=== Multiple Operations Profiling ===
+row-major sum                 : 0.000460 ± 0.000333 seconds (mean ± sd over 100000 runs)
+col-major sum                 : 0.000426 ± 0.000310 seconds (mean ± sd over 100000 runs)
+row-major mean                : 0.000457 ± 0.000311 seconds (mean ± sd over 100000 runs)
+col-major mean                : 0.000426 ± 0.000307 seconds (mean ± sd over 100000 runs)
+row-major std                 : 0.001521 ± 0.000607 seconds (mean ± sd over 100000 runs)
+col-major std                 : 0.001407 ± 0.000580 seconds (mean ± sd over 100000 runs)
+row-major transpose           : 0.000428 ± 0.000312 seconds (mean ± sd over 100000 runs)
+col-major transpose           : 0.000427 ± 0.000311 seconds (mean ± sd over 100000 runs)
+row-major reshape             : 0.000418 ± 0.000314 seconds (mean ± sd over 100000 runs)
+col-major reshape             : 0.000417 ± 0.000310 seconds (mean ± sd over 100000 runs)
+row-major write to txt        : 0.004656 ± 0.000340 seconds (mean ± sd over 10000 runs)
+col-major write to txt        : 0.004621 ± 0.000268 seconds (mean ± sd over 10000 runs)
+row-major read from txt       : 0.003492 ± 0.000718 seconds (mean ± sd over 10000 runs)
+col-major read from txt       : 0.003485 ± 0.000667 seconds (mean ± sd over 10000 runs)
+
+
+
+--- DataFrame Small Test (1000 x 1000) ---
+=== Multiple Operations Profiling ===
+row-major sum                 : 0.010015 ± 0.001289 seconds (mean ± sd over 10000 runs)
+col-major sum                 : 0.008022 ± 0.001316 seconds (mean ± sd over 10000 runs)
+row-major mean                : 0.010071 ± 0.001319 seconds (mean ± sd over 10000 runs)
+col-major mean                : 0.008037 ± 0.001313 seconds (mean ± sd over 10000 runs)
+row-major std                 : 0.040431 ± 0.004209 seconds (mean ± sd over 10000 runs)
+col-major std                 : 0.029373 ± 0.004425 seconds (mean ± sd over 10000 runs)
+row-major transpose           : 0.010292 ± 0.001493 seconds (mean ± sd over 10000 runs)
+col-major transpose           : 0.010269 ± 0.001490 seconds (mean ± sd over 10000 runs)
+row-major reshape             : 0.008172 ± 0.001446 seconds (mean ± sd over 10000 runs)
+col-major reshape             : 0.008155 ± 0.001417 seconds (mean ± sd over 10000 runs)
+row-major write to txt        : 0.426448 ± 0.016619 seconds (mean ± sd over 1000 runs)
+col-major write to txt        : 0.423934 ± 0.004485 seconds (mean ± sd over 1000 runs)
+row-major read from txt       : 0.201893 ± 0.013576 seconds (mean ± sd over 1000 runs)
+col-major read from txt       : 0.202325 ± 0.013886 seconds (mean ± sd over 1000 runs)
+
+
+
+--- DataFrame Medium Test (10000 x 1000) ---
+=== Multiple Operations Profiling ===
+row-major sum                 : 0.065501 ± 0.003343 seconds (mean ± sd over 1000 runs)
+col-major sum                 : 0.084393 ± 0.003352 seconds (mean ± sd over 1000 runs)
+row-major mean                : 0.065438 ± 0.003302 seconds (mean ± sd over 1000 runs)
+col-major mean                : 0.084378 ± 0.003386 seconds (mean ± sd over 1000 runs)
+row-major std                 : 0.408436 ± 0.003362 seconds (mean ± sd over 1000 runs)
+col-major std                 : 0.339969 ± 0.005225 seconds (mean ± sd over 1000 runs)
+row-major transpose           : 0.081258 ± 0.004156 seconds (mean ± sd over 1000 runs)
+col-major transpose           : 0.147414 ± 0.003651 seconds (mean ± sd over 1000 runs)
+row-major reshape             : 0.056411 ± 0.003972 seconds (mean ± sd over 1000 runs)
+col-major reshape             : 0.094881 ± 0.003596 seconds (mean ± sd over 1000 runs)
+row-major write to txt        : 4.318327 ± 0.056263 seconds (mean ± sd over 100 runs)
+col-major write to txt        : 4.662678 ± 0.061354 seconds (mean ± sd over 100 runs)
+row-major read from txt       : 1.949426 ± 0.024949 seconds (mean ± sd over 100 runs)
+col-major read from txt       : 2.311603 ± 0.038010 seconds (mean ± sd over 100 runs)
+
+
+
+--- DataFrame Large Test (100000 x 1000) ---
+=== Multiple Operations Profiling ===
+row-major sum                 : 0.610086 ± 0.016004 seconds (mean ± sd over 100 runs)
+col-major sum                 : 0.881440 ± 0.020543 seconds (mean ± sd over 100 runs)
+row-major mean                : 0.610292 ± 0.016128 seconds (mean ± sd over 100 runs)
+col-major mean                : 0.880187 ± 0.021167 seconds (mean ± sd over 100 runs)
+row-major std                 : 3.811175 ± 0.029474 seconds (mean ± sd over 100 runs)
+col-major std                 : 3.272014 ± 0.036911 seconds (mean ± sd over 100 runs)
+row-major transpose           : 0.728149 ± 0.029243 seconds (mean ± sd over 100 runs)
+col-major transpose           : 1.671790 ± 0.019185 seconds (mean ± sd over 100 runs)
+row-major reshape             : 0.514177 ± 0.026323 seconds (mean ± sd over 100 runs)
+col-major reshape             : 0.972376 ± 0.019115 seconds (mean ± sd over 100 runs)
+row-major write to txt        : 40.226938 ± 0.120164 seconds (mean ± sd over 10 runs)
+col-major write to txt        : 46.298254 ± 0.252249 seconds (mean ± sd over 10 runs)
+row-major read from txt       : 18.749822 ± 0.208021 seconds (mean ± sd over 10 runs)
+col-major read from txt       : 34.521324 ± 0.565242 seconds (mean ± sd over 10 runs)
+
+
+
+
+=== Test time taken: 9046.06 seconds ===

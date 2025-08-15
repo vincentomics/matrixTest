@@ -1,0 +1,78 @@
+--- Matrix Tiny Test (100 x 100) ---
+=== Multiple Operations Profiling ===
+row-major sum                 : 0.000047 ± 0.000019 seconds (mean ± sd over 100000 runs)
+col-major sum                 : 0.000014 ± 0.000019 seconds (mean ± sd over 100000 runs)
+row-major mean                : 0.000047 ± 0.000022 seconds (mean ± sd over 100000 runs)
+col-major mean                : 0.000014 ± 0.000020 seconds (mean ± sd over 100000 runs)
+row-major std                 : 0.000936 ± 0.000491 seconds (mean ± sd over 100000 runs)
+col-major std                 : 0.000931 ± 0.000472 seconds (mean ± sd over 100000 runs)
+row-major transpose           : 0.000029 ± 0.000111 seconds (mean ± sd over 100000 runs)
+col-major transpose           : 0.000028 ± 0.000069 seconds (mean ± sd over 100000 runs)
+row-major reshape             : 0.000017 ± 0.000105 seconds (mean ± sd over 100000 runs)
+col-major reshape             : 0.000016 ± 0.000069 seconds (mean ± sd over 100000 runs)
+row-major write to txt        : 0.003846 ± 0.000066 seconds (mean ± sd over 10000 runs)
+col-major write to txt        : 0.003846 ± 0.000270 seconds (mean ± sd over 10000 runs)
+row-major read from txt       : 0.003956 ± 0.000699 seconds (mean ± sd over 10000 runs)
+col-major read from txt       : 0.003951 ± 0.000744 seconds (mean ± sd over 10000 runs)
+
+
+
+--- Matrix Small Test (1000 x 1000) ---
+=== Multiple Operations Profiling ===
+row-major sum                 : 0.002978 ± 0.000031 seconds (mean ± sd over 10000 runs)
+col-major sum                 : 0.000955 ± 0.000063 seconds (mean ± sd over 10000 runs)
+row-major mean                : 0.002981 ± 0.000034 seconds (mean ± sd over 10000 runs)
+col-major mean                : 0.000954 ± 0.000024 seconds (mean ± sd over 10000 runs)
+row-major std                 : 0.023801 ± 0.002649 seconds (mean ± sd over 10000 runs)
+col-major std                 : 0.022206 ± 0.002571 seconds (mean ± sd over 10000 runs)
+row-major transpose           : 0.003037 ± 0.000927 seconds (mean ± sd over 10000 runs)
+col-major transpose           : 0.003043 ± 0.000945 seconds (mean ± sd over 10000 runs)
+row-major reshape             : 0.001442 ± 0.000857 seconds (mean ± sd over 10000 runs)
+col-major reshape             : 0.001441 ± 0.000823 seconds (mean ± sd over 10000 runs)
+row-major write to txt        : 0.375720 ± 0.003550 seconds (mean ± sd over 1000 runs)
+col-major write to txt        : 0.379206 ± 0.058317 seconds (mean ± sd over 1000 runs)
+row-major read from txt       : 0.207414 ± 0.012907 seconds (mean ± sd over 1000 runs)
+col-major read from txt       : 0.207886 ± 0.013699 seconds (mean ± sd over 1000 runs)
+
+
+
+--- Matrix Medium Test (10000 x 1000) ---
+=== Multiple Operations Profiling ===
+row-major sum                 : 0.028512 ± 0.000184 seconds (mean ± sd over 1000 runs)
+col-major sum                 : 0.010143 ± 0.000087 seconds (mean ± sd over 1000 runs)
+row-major mean                : 0.028556 ± 0.000290 seconds (mean ± sd over 1000 runs)
+col-major mean                : 0.010145 ± 0.000243 seconds (mean ± sd over 1000 runs)
+row-major std                 : 0.265053 ± 0.014309 seconds (mean ± sd over 1000 runs)
+col-major std                 : 0.240571 ± 0.014400 seconds (mean ± sd over 1000 runs)
+row-major transpose           : 0.044166 ± 0.003147 seconds (mean ± sd over 1000 runs)
+col-major transpose           : 0.070063 ± 0.003166 seconds (mean ± sd over 1000 runs)
+row-major reshape             : 0.019635 ± 0.003120 seconds (mean ± sd over 1000 runs)
+col-major reshape             : 0.019585 ± 0.002945 seconds (mean ± sd over 1000 runs)
+row-major write to txt        : 3.820647 ± 0.066152 seconds (mean ± sd over 100 runs)
+col-major write to txt        : 3.949718 ± 0.125911 seconds (mean ± sd over 100 runs)
+row-major read from txt       : 1.941529 ± 0.030862 seconds (mean ± sd over 100 runs)
+col-major read from txt       : 2.379979 ± 0.033477 seconds (mean ± sd over 100 runs)
+
+
+
+--- Matrix Large Test (100000 x 1000) ---
+=== Multiple Operations Profiling ===
+row-major sum                 : 0.284035 ± 0.002000 seconds (mean ± sd over 100 runs)
+col-major sum                 : 0.101489 ± 0.000890 seconds (mean ± sd over 100 runs)
+row-major mean                : 0.283929 ± 0.000841 seconds (mean ± sd over 100 runs)
+col-major mean                : 0.101811 ± 0.005114 seconds (mean ± sd over 100 runs)
+row-major std                 : 2.516038 ± 0.015281 seconds (mean ± sd over 100 runs)
+col-major std                 : 2.361229 ± 0.019178 seconds (mean ± sd over 100 runs)
+row-major transpose           : 0.403422 ± 0.014330 seconds (mean ± sd over 100 runs)
+col-major transpose           : 0.887587 ± 0.015367 seconds (mean ± sd over 100 runs)
+row-major reshape             : 0.189084 ± 0.013775 seconds (mean ± sd over 100 runs)
+col-major reshape             : 0.189188 ± 0.013276 seconds (mean ± sd over 100 runs)
+row-major write to txt        : 38.594951 ± 0.570640 seconds (mean ± sd over 10 runs)
+col-major write to txt        : 40.848301 ± 0.565515 seconds (mean ± sd over 10 runs)
+row-major read from txt       : 18.925735 ± 0.301438 seconds (mean ± sd over 10 runs)
+col-major read from txt       : 35.315829 ± 0.987226 seconds (mean ± sd over 10 runs)
+
+
+
+
+=== Test time taken: 6190.82 seconds ===

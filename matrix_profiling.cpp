@@ -208,8 +208,8 @@ void profile_operations(const Matrix& mat_row, const Matrix& mat_col, const std:
     std::cout << "- row-major: " << mat_row.getRows() << " x " << mat_row.getCols() << "\n";
     std::cout << "- col-major: " << mat_col.getRows() << " x " << mat_col.getCols() << "\n\n";
 
-    // Define operations and their lambdas
-    std::map<std::string, std::function<void()>> operations = {
+    // Define operations and their lambdas - use vector to maintain order
+    std::vector<std::pair<std::string, std::function<void()>>> operations = {
         {"row-major sum",    [&]() { mat_row.rowSum(); }},
         {"col-major sum",    [&]() { mat_col.colSum(); }},
         {"row-major mean",   [&]() { mat_row.rowMean(); }},
@@ -218,8 +218,16 @@ void profile_operations(const Matrix& mat_row, const Matrix& mat_col, const std:
         {"col-major std",    [&]() { mat_col.colStd(); }},
         {"row-major transpose", [&]() { mat_row.transpose(); }},
         {"col-major transpose", [&]() { mat_col.transpose(); }},
-        {"row-major reshape",    [&]() { mat_row.reshape(mat_row.getRows(), 50); }},
-        {"col-major reshape",    [&]() { mat_col.reshape(mat_col.getRows(), 50); }},
+        {"row-major reshape",    [&]() { 
+            size_t new_cols = std::min(50UL, mat_row.getCols());
+            size_t new_rows = (mat_row.getRows() * mat_row.getCols()) / new_cols;
+            mat_row.reshape(new_rows, new_cols); 
+        }},
+        {"col-major reshape",    [&]() { 
+            size_t new_cols = std::min(50UL, mat_col.getCols());
+            size_t new_rows = (mat_col.getRows() * mat_col.getCols()) / new_cols;
+            mat_col.reshape(new_rows, new_cols); 
+        }},
         {"row-major write to txt",   [&]() { mat_row.writeToFile(filename_prefix + "_row.txt"); }},
         {"col-major write to txt",   [&]() { mat_col.writeToFile(filename_prefix + "_col.txt"); }},
         {"row-major read from txt",  [&]() { Matrix::readFromFile(filename_prefix + "_row.txt", mat_row.getRows(), mat_row.getCols()); }},
@@ -243,7 +251,7 @@ int main() {
     auto time_start = std::chrono::high_resolution_clock::now();
     std::cout << "=== C++ Matrix Operations Profiling ===\n\n";
 
-    std::map<std::string, std::tuple<size_t, size_t, size_t>> sizes = {
+    std::vector<std::pair<std::string, std::tuple<size_t, size_t, size_t>>> sizes = {
         {"Tiny",  {100, 100, 100000}},
         {"Small",  {1000, 1000, 10000}},
         {"Medium", {10000, 1000, 1000}},

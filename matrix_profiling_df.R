@@ -74,7 +74,5 @@ run_all_benchmarks <- function() {
 }
 
 # Run everything
-time_start = Sys.time()
-run_all_benchmarks()
-time_end = Sys.time()
-cat(paste0("\n=== Test time taken:", time_end - time_start, "seconds ===\n"))
+time_taken <- system.time(run_all_benchmarks())
+cat(sprintf("\n=== Test time taken: %.2f seconds ===\n", time_taken["elapsed"]))
