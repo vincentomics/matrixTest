@@ -441,28 +441,28 @@ if __name__ == "__main__":
 === USAGE EXAMPLES ===
 
 # Generate one file with all test sections (RECOMMENDED)
-python matrix_log_parser.py --sections --save
+python run_perf_tables.py --sections --save
 # Creates: matrix_performance_all_tests.md with separate sections for all test sizes
 
 # Generate everything at once
-python matrix_log_parser.py --all --save
+python run_perf_tables.py --all --save
 # Creates:
 #   - matrix_performance_all_tests.md (sectioned file)
 #   - complete_performance_comparison.md (alternative format)
 #   - README_performance_table.md (summary for documentation)
 
 # Generate specific test size
-python matrix_log_parser.py --test tiny --save
-python matrix_log_parser.py --test small --save
-python matrix_log_parser.py --test medium --save
-python matrix_log_parser.py --test large --save
+python run_perf_tables.py --test tiny --save
+python run_perf_tables.py --test small --save
+python run_perf_tables.py --test medium --save
+python run_perf_tables.py --test large --save
 
 # Generate README-style table
-python matrix_log_parser.py --readme-style --save
+python run_perf_tables.py --readme-style --save
 
 # View results in console (remove --save)
-python matrix_log_parser.py --sections
-python matrix_log_parser.py --test tiny
+python run_perf_tables.py --sections
+python run_perf_tables.py --test tiny
 
 
 === TABLE FORMAT ===
