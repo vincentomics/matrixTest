@@ -13,11 +13,6 @@ function clean_up() {
     fi
 }
 
-clean_up log_cpp_mat.txt
-clean_up log_R_df.txt
-clean_up log_R_mat.txt
-clean_up log_python_np.txt
-clean_up log_python_pd.txt
 clean_up temp_*.txt
 
 
@@ -26,7 +21,7 @@ clean_up temp_*.txt
 ./matrix_profiling > log_cpp_mat.txt
 
 
-## Python (planned, currently on jupyter notebook)
+## Python
 python matrix_profiling_np.py > log_python_np.txt
 python matrix_profiling_pd.py > log_python_pd.txt
 
